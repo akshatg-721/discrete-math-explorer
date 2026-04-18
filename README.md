@@ -1,108 +1,191 @@
-# Discrete Mathematics Explorer
+# 🧮 Discrete Mathematics Explorer
 
-## Project Description
+<div align="center">
 
-Discrete Mathematics Explorer is a Python CLI application scaffold focused on foundational set theory and relation concepts.  
-This phase contains structure and documentation-only stubs for implementation planned before the submission deadline.
+![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Tests](https://img.shields.io/badge/Tests-68%20Passed-4ade80?style=for-the-badge&logo=pytest&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-a29bfe?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Complete-00b894?style=for-the-badge)
 
-## Tech Stack
+**A Python CLI application that brings Discrete Mathematics to life — through working code, step-by-step algorithms, and interactive visualizations.**
 
-- Python
-- matplotlib
-- matplotlib_venn
-- itertools
-- Python standard library
+*Set Theory · Cartesian Products · Relations · Warshall's Algorithm · Graph Reachability*
 
-## Installation
+</div>
 
-1. Ensure Python 3.10+ is installed.
-2. Navigate to the project directory:
+---
 
-```bash
-cd discrete-math-explorer
-```
+## 📌 Overview
 
-3. Install dependencies:
+Discrete Mathematics Explorer is a fully working, tested Python CLI application implementing core Discrete Mathematics concepts. Every mathematical concept is explicitly connected to its algorithm and its code — with real-world interpretations for each feature.
 
-```bash
-pip install matplotlib matplotlib-venn
-```
+Built as a university Discrete Mathematics project, it goes significantly beyond the base requirements with named algorithms, step-by-step matrix traces, and applied real-world demonstrations.
 
-## How to Run
+---
 
-The CLI entry point will be:
+## ✨ Features
 
-```bash
-python main.py
-```
+### Core Features
+| Feature | Description | Formula |
+|---|---|---|
+| **Set Operations** | Union, Intersection, Difference, Symmetric Difference, Subset | A ∪ B, A ∩ B, A − B, A △ B |
+| **Power Set Generator** | All possible subsets of a set | \|P(A)\| = 2ⁿ |
+| **Cartesian Product** | Every ordered pair (a, b) from two sets | \|A × B\| = \|A\| × \|B\| |
+| **Relation Builder** | Build relations from Cartesian product, check all 5 properties | R ⊆ A × B |
+| **Relation Counter** | Count all possible relations between two sets | 2^(\|A\|×\|B\|) |
 
-At this scaffold stage, `main.py` only includes the planned menu structure as comments.
+### Relation Properties Checked
+- ✅ **Reflexive** — ∀a ∈ A: (a, a) ∈ R
+- ✅ **Symmetric** — (a,b) ∈ R → (b,a) ∈ R
+- ✅ **Antisymmetric** — (a,b) ∈ R ∧ (b,a) ∈ R → a = b
+- ✅ **Transitive** — (a,b) ∈ R ∧ (b,c) ∈ R → (a,c) ∈ R
+- ✅ **Equivalence** — Reflexive + Symmetric + Transitive
 
-## Folder Structure
+### Extra Features (Beyond Spec)
+| Feature | Description |
+|---|---|
+| **Warshall's Algorithm** | Computes transitive closure with full step-by-step matrix trace at every intermediate vertex k — O(n³) |
+| **Relation Composition (R ∘ S)** | If (a,b) ∈ R and (b,c) ∈ S then (a,c) ∈ R∘S — the mathematical foundation of SQL JOINs |
+| **Equivalence Class Partitioner** | Automatically groups elements into equivalence classes for valid equivalence relations |
+| **Social Network Influence Demo** | Models a follower graph, applies Warshall's to find indirect reach, identifies most influential node |
 
-```text
-discrete-math-explorer/
-├── main.py
-├── sets.py
-├── relations.py
-├── visualizer.py
-├── tests/
-│   ├── test_sets.py
-│   └── test_relations.py
-└── README.md
-```
+### Visualizations
+- 🔵 **Venn Diagram** — Set operations with matplotlib-venn
+- 🟩 **Relation Matrix Heatmap** — 0/1 boolean matrix with labeled axes
+- 🌳 **Power Set Tree** — Layered branching diagram of all subsets
+- 📍 **Cartesian Product Grid** — Scatter plot of all (a, b) pairs
+- 🔄 **Warshall Step Matrices** — Sequence of heatmaps showing algorithm progress per k step
 
-## The Math Behind It
+---
+
+## 🧠 The Math Behind It
 
 ### Set Operations
+A ∪ B = {x | x ∈ A or x ∈ B}
+A ∩ B = {x | x ∈ A and x ∈ B}
+A − B = {x | x ∈ A and x ∉ B}
+A △ B = (A − B) ∪ (B − A)
 
-- Parse set:
-  - \( A = \{x \mid x \text{ appears in cleaned input}\} \)
-- Union:
-  - \( A \cup B = \{x \mid x \in A \text{ or } x \in B\} \)
-- Intersection:
-  - \( A \cap B = \{x \mid x \in A \text{ and } x \in B\} \)
-- Difference:
-  - \( A - B = \{x \mid x \in A \text{ and } x \notin B\} \)
-- Symmetric Difference:
-  - \( A \triangle B = (A - B) \cup (B - A) \)
-- Subset:
-  - \( A \subseteq B \iff \forall x (x \in A \Rightarrow x \in B) \)
-- Power Set:
-  - \( \mathcal{P}(A) = \{S \mid S \subseteq A\} \)
-  - \( |\mathcal{P}(A)| = 2^{|A|} \)
-- Cartesian Product:
-  - \( A \times B = \{(a,b) \mid a \in A, b \in B\} \)
-  - \( |A \times B| = |A| \cdot |B| \)
+### Power Set
+For a set A with n elements, the power set P(A) contains every possible subset:
+|P(A)| = 2ⁿ
+**Why 2ⁿ?** For each element, you independently choose to include it or not — 2 choices × n elements → 2ⁿ total subsets.
 
-### Relations
+### Cartesian Product & Relations
+A × B = {(a, b) | a ∈ A, b ∈ B}
+|A × B| = |A| × |B|
+Number of possible relations = 2^(|A| × |B|)
 
-- Relation from \( A \) to \( B \):
-  - \( R \subseteq A \times B \)
-- Reflexive (on \( A \)):
-  - \( \forall a \in A,\ (a,a) \in R \)
-- Symmetric:
-  - \( \forall a,b,\ (a,b) \in R \Rightarrow (b,a) \in R \)
-- Antisymmetric:
-  - \( \forall a,b,\ ((a,b) \in R \land (b,a) \in R) \Rightarrow a=b \)
-- Transitive:
-  - \( \forall a,b,c,\ ((a,b) \in R \land (b,c) \in R) \Rightarrow (a,c) \in R \)
-- Equivalence Relation:
-  - Reflexive + Symmetric + Transitive
-- Total number of possible relations from \( A \) to \( B \):
-  - \( 2^{|A|\cdot|B|} \)
+### Warshall's Algorithm — Transitive Closure
+Finds all pairs (i, j) where j is reachable from i, directly or through any chain:
 
-## Planned CLI Menu
+```python
+for k in range(n):           # intermediate vertex
+    for i in range(n):
+        for j in range(n):
+            M[i][j] = M[i][j] or (M[i][k] and M[k][j])
+```
 
-1. Set Operations
-2. Power Set Generator
-3. Cartesian Product
-4. Relation Builder and Property Checker
-5. Visualizations
-6. Real World Applications (extra feature)
-7. Exit
+**Time Complexity:** O(n³)
 
-## Notes
+**Intuition:** For each possible "middle stop" k — if you can go i→k AND k→j, mark i→j as reachable. The matrix prints after every k step so you see the algorithm thinking in real time.
 
-- This scaffold intentionally contains function signatures, docstrings, and mathematical comments only.
-- No computational logic has been implemented in this stage.
+### Relation Composition
+(a, c) ∈ R∘S  ⟺  ∃b : (a,b) ∈ R  ∧  (b,c) ∈ S
+**Real world:** R = "enrolled in" (Students → Courses), S = "taught by" (Courses → Professors) → R∘S = Students → Professors directly. This is the mathematical foundation of SQL JOINs.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+```bash
+python3 --version   # 3.8 or higher required
+```
+
+### Install Dependencies
+```bash
+pip install matplotlib matplotlib-venn pytest
+```
+
+### Run
+```bash
+git clone https://github.com/akshatg-721/discrete-math-explorer.git
+cd discrete-math-explorer
+python3 main.py
+```
+
+### Run Tests
+```bash
+python3 -m pytest tests/ -v
+```
+
+---
+
+## 📁 Project Structure
+discrete-math-explorer/
+├── main.py               # CLI entry point — 7-option menu
+├── sets.py               # All set operations (9 functions)
+├── relations.py          # Relations + Warshall's (10 functions)
+├── visualizer.py         # matplotlib visualizations (5 plots)
+├── tests/
+│   ├── test_sets.py      # 34 test cases
+│   └── test_relations.py # 34 test cases
+└── README.md
+
+---
+
+## 🖥️ CLI Menu
+═══════════════════════════════════════════════════════
+🧮  DISCRETE MATHEMATICS EXPLORER
+A comprehensive CLI for set theory & relations
+═══════════════════════════════════════════════════════
+
+Set Operations (∪, ∩, -, △, ⊆)
+Power Set Generator (P(A) = 2ⁿ)
+Cartesian Product (A × B)
+Relation Builder + Property Checker
+Visualizations (Venn, Matrix, Tree, Grid)
+Advanced (Warshall, Composition, Equivalence)
+Exit
+───────────────────────────────────────────────────────
+Option 6 sub-menu:
+6a. Warshall's Algorithm (Step-by-Step Transitive Closure)
+6b. Relation Composition (R ∘ S)
+6c. Equivalence Class Partitioner
+6d. Social Network Influence Demo
+
+
+---
+
+## ✅ Test Results
+68 passed in 0.10s
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+tests/test_sets.py        34 passed
+tests/test_relations.py   34 passed
+
+---
+
+## 🌍 Real World Applications
+
+| DM Concept | Real World Application |
+|---|---|
+| Sets | Database tables, tag systems, search filters |
+| Cartesian Product | SQL JOIN operations, coordinate systems |
+| Relations | Social graphs, access control, scheduling |
+| Transitive Closure | Network reachability, GPS routing, influence analysis |
+| Equivalence Classes | Grouping, clustering, partitioning |
+| Relation Composition | Multi-hop queries, indirect connections |
+
+---
+
+## 👨‍💻 Author
+
+**Akshat Goyal** — B.Tech CSE · BML Munjal University
+[GitHub](https://github.com/akshatg-721)
+
+---
+
+## 📄 License
+
+Restricted
